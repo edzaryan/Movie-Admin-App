@@ -7,28 +7,30 @@ namespace Movie_Admin_App.Models
     {
         public int Id { get; set; }
 
+
         [Required(ErrorMessage = "Please enter first name")]
         [StringLength(30)]
         public string? FirstName { get; set; }
+
 
         [Required(ErrorMessage = "Please enter last name")]
         [StringLength(30)]
         public string? LastName { get; set; }
 
+
         [Required(ErrorMessage = "Please enter height")]
-        public double Height { get; set; }
+        public double? Height { get; set; }
+
 
         [Required(ErrorMessage = "Please enter birthday")]
         public DateTime? Birthday { get; set; }
 
-        [Required(ErrorMessage = "Please enter the place of birth")]
-        [StringLength(56)]
-        public string? PlaceOfBirth { get; set; }
 
         [Required(ErrorMessage = "Please enter the biography")]
         [Column("Biography")]
         [StringLength(1000)]
         public string? Bio { get; set; }
+
 
         [Required(ErrorMessage = "Please enter the image file name")]
         [Column("ImageFileName")]
@@ -36,11 +38,12 @@ namespace Movie_Admin_App.Models
         public string? Image { get; set; }
 
 
-        public List<Movie>? Movies { get; set; }
-        public List<ActorMovie>? ActorMovies { get; set; }
-
         public int? CountryId { get; set; }
         public Country? Country { get; set; }
+
+
+        public List<Movie>? Movies { get; set; }
+        public List<ActorMovie>? ActorMovies { get; set; }
     }
 }
  

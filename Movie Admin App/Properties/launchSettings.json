@@ -1,21 +1,21 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:27774",
+      "applicationUrl": "http://localhost:5077",
       "sslPort": 0
     }
   },
   "profiles": {
     "Movie_Admin_App": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:5124",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:5124",
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -23,6 +23,16 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "launchBrowser": true,
+      "launchUrl": "http://localhost:5124",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5124"
+      },
+      "distributionName": ""
     }
   }
 }

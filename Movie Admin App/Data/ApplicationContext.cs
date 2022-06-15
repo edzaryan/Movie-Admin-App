@@ -62,6 +62,7 @@ namespace Movie_Admin_App.Data
                         j.ToTable("CountryMovie");
                     });
 
+
             modelBuilder
                 .Entity<Movie>()
                 .HasMany(c => c.Genres)

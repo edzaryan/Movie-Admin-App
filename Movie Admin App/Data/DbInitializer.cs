@@ -15,13 +15,13 @@ namespace Movie_Admin_App.Data
 
                 if (!context.Countries.Any())
                 {
-                    Country c1 = new() { Name = "US" };
-                    Country c2 = new() { Name = "Canada" };
-                    Country c3 = new() { Name = "Italy" };
-                    Country c4 = new() { Name = "Australia" };
-                    Country c5 = new() { Name = "UK" };
-                    Country c6 = new() { Name = "Germany" };
-                    Country c7 = new() { Name = "Mexico" };
+                    Country c1 = new() { Name = "us" };
+                    Country c2 = new() { Name = "ca" };
+                    Country c3 = new() { Name = "it" };
+                    Country c4 = new() { Name = "au" };
+                    Country c5 = new() { Name = "uk" };
+                    Country c6 = new() { Name = "ge" };
+                    Country c7 = new() { Name = "me" };
 
                     context.Countries.AddRange(c1, c2, c3, c4, c5, c6, c7);
 
@@ -56,8 +56,7 @@ namespace Movie_Admin_App.Data
                         LastName = "Keaton",
                         Height = 1.78,
                         Birthday = new DateTime(1951, 09, 05),
-                        PlaceOfBirth = "US",
-                        Image = "abgdj45ert.jfif",
+                        Image = "3sl5cw7cg8.jfif",
                         Bio = "Michael Keaton is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 1
                     };
@@ -68,7 +67,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Norton",
                         Height = 1.83,
                         Birthday = new DateTime(1969, 08, 18),
-                        PlaceOfBirth = "US",
                         Image = "456dj45ert.jfif",
                         Bio = "Edward Norton is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 1
@@ -80,7 +78,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Stone",
                         Height = 1.68,
                         Birthday = new DateTime(1988, 11, 06),
-                        PlaceOfBirth = "US",
                         Image = "abgytr5ert.jfif",
                         Bio = "Edward Norton is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 1
@@ -92,7 +89,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Galifianakis",
                         Height = 1.73,
                         Birthday = new DateTime(1974, 04, 17),
-                        PlaceOfBirth = "US",
                         Image = "33gytr5ert.jfif",
                         Bio = "Zach Galifianakis is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 1
@@ -104,7 +100,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Worthington",
                         Height = 1.78,
                         Birthday = new DateTime(1976, 08, 18),
-                        PlaceOfBirth = "US",
                         Image = "asrytr5ert.jfif",
                         Bio = "Sam Worthington is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 4
@@ -116,7 +111,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Weaver",
                         Height = 1.76,
                         Birthday = new DateTime(1977, 09, 10),
-                        PlaceOfBirth = "US",
                         Image = "asrht35e4t.jfif",
                         Bio = "Sigourney Weaver is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 1
@@ -128,7 +122,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Saldana",
                         Height = 1.7,
                         Birthday = new DateTime(1978, 06, 19),
-                        PlaceOfBirth = "US",
                         Image = "asraa35e4t.jfif",
                         Bio = "Zoe Saldana is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 1
@@ -140,7 +133,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Bale",
                         Height = 1.83,
                         Birthday = new DateTime(1974, 01, 30),
-                        PlaceOfBirth = "UK",
                         Image = "asrer35e4t.jfif",
                         Bio = "Christian Bale is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 5
@@ -152,7 +144,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Ledger",
                         Height = 1.85,
                         Birthday = new DateTime(1979, 04, 04),
-                        PlaceOfBirth = "Australian",
                         Image = "attet35e4t.jfif",
                         Bio = "Health Ledger is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 4
@@ -164,7 +155,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Oldman",
                         Height = 1.76,
                         Birthday = new DateTime(1958, 04, 11),
-                        PlaceOfBirth = "UK",
                         Image = "avtev35evt.jfif",
                         Bio = "Gary Oldman is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 5
@@ -176,7 +166,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Eckhart",
                         Height = 1.86,
                         Birthday = new DateTime(1968, 03, 12),
-                        PlaceOfBirth = "US",
                         Image = "avtii35evt.jfif",
                         Bio = "Aaron Eckhart is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 1
@@ -188,7 +177,6 @@ namespace Movie_Admin_App.Data
                         LastName = "Phoenix",
                         Height = 1.76,
                         Birthday = new DateTime(1974, 11, 11),
-                        PlaceOfBirth = "US",
                         Image = "vbhii35evt.jfif",
                         Bio = "Joaquin Phoenix is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 1
@@ -200,7 +188,6 @@ namespace Movie_Admin_App.Data
                         LastName = "De Niro",
                         Height = 1.75,
                         Birthday = new DateTime(1954, 11, 12),
-                        PlaceOfBirth = "US",
                         Image = "vbhopp5evt.jfif",
                         Bio = "Robert De Niro is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         CountryId = 1
@@ -220,10 +207,9 @@ namespace Movie_Admin_App.Data
                         LastName = "González Iñárritu",
                         Height = 1.84,
                         Birthday = new DateTime(1963, 08, 15),
-                        PlaceOfBirth = "Mexico",
+                        CountryId = 7,
                         Image = "vytoep5evt.jfif",
                         Bio = "Alejandro González Iñárritu is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                        CountryId = 7
                     };
 
                     Director d2 = new()
@@ -232,10 +218,9 @@ namespace Movie_Admin_App.Data
                         LastName = "Nolan",
                         Height = 1.81,
                         Birthday = new DateTime(1970, 06, 30),
-                        PlaceOfBirth = "UK",
+                        CountryId = 5,
                         Image = "vy888p5evt.jfif",
                         Bio = "Christopher Nolan is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                        CountryId = 5
                     };
 
                     Director d3 = new()
@@ -244,10 +229,9 @@ namespace Movie_Admin_App.Data
                         LastName = "Cameron",
                         Height = 1.87,
                         Birthday = new DateTime(1954, 08, 16),
-                        PlaceOfBirth = "Canadia",
+                        CountryId = 2,
                         Image = "34toep51vt.jfif",
                         Bio = "James Cameron is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                        CountryId = 2
                     };
 
                     Director d4 = new()
@@ -256,13 +240,23 @@ namespace Movie_Admin_App.Data
                         LastName = "Phillips",
                         Height = 1.83,
                         Birthday = new DateTime(1970, 12, 20),
-                        PlaceOfBirth = "US",
+                        CountryId = 1,
                         Image = "vypiet5evt.jfif",
                         Bio = "Todd Phillips is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                        CountryId = 1
                     };
 
-                    context.Directors.AddRange(d1, d2, d3, d4);
+                    Director d5 = new()
+                    {
+                        FirstName = "David",
+                        LastName = "Fincher",
+                        Height = 1.84,
+                        Birthday = new DateTime(1963, 08, 28),
+                        CountryId = 1,
+                        Image = "2wrty7uiop.jfif",
+                        Bio = "David Fincher is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                    };
+
+                    context.Directors.AddRange(d1, d2, d3, d4, d5);
 
                     context.SaveChanges();
                 }
@@ -280,7 +274,7 @@ namespace Movie_Admin_App.Data
                         Stars = 2700,
                         Duration = 120,
                         Image = "r435t34984.jpg",
-                        VideoFile = "t349848111.mp4",
+                        VideoFileName = "t349848111.mp4",
                         DirectorId = 1,
                     };
 
@@ -294,7 +288,7 @@ namespace Movie_Admin_App.Data
                         Stars = 2814,
                         Duration = 160,
                         Image = "t3g98483jr.jpg",
-                        VideoFile = "t349148991.mp4",
+                        VideoFileName = "t349148991.mp4",
                         DirectorId = 3,
                     };
 
@@ -308,7 +302,7 @@ namespace Movie_Admin_App.Data
                         Stars = 2450,
                         Duration = 152,
                         Image = "t8g96483gg.jpg",
-                        VideoFile = "t349148a91.mp4",
+                        VideoFileName = "t349148a91.mp4",
                         DirectorId = 2,
                     };
 
@@ -322,11 +316,25 @@ namespace Movie_Admin_App.Data
                         Stars = 6541,
                         Duration = 122,
                         Image = "48g06483rr.jpg",
-                        VideoFile = "t559148991.mp4",
+                        VideoFileName = "t559148991.mp4",
                         DirectorId = 4,
                     };
 
-                    context.Movies.AddRange(m1, m2, m3, m4);
+                    Movie m5 = new()
+                    {
+                        Title = "Fight Club",
+                        Description = "Fight Club is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        Year = 1999,
+                        Views = 35612,
+                        Voters = 845,
+                        Stars = 7812,
+                        Duration = 139,
+                        Image = "wertyuhgfv.jfif",
+                        VideoFileName = "34redftgyu.mp4",
+                        DirectorId = 5,
+                    };
+
+                    context.Movies.AddRange(m1, m2, m3, m4, m5);
 
                     context.SaveChanges();
                 }
@@ -350,7 +358,9 @@ namespace Movie_Admin_App.Data
                     ActorMovie am12 = new() { ActorId = 12, MovieId = 4 };
                     ActorMovie am13 = new() { ActorId = 13, MovieId = 4 };
 
-                    context.AddRange(am1, am2, am3, am4, am5, am6, am7, am8, am9, am10, am11, am12, am13);
+                    ActorMovie am14 = new() { ActorId = 2, MovieId = 5 };
+
+                    context.AddRange(am1, am2, am3, am4, am5, am6, am7, am8, am9, am10, am11, am12, am13, am14);
 
                     context.SaveChanges();
                 }
@@ -390,7 +400,10 @@ namespace Movie_Admin_App.Data
                     GenreMovie gm9 = new() { GenreId = 1, MovieId = 4 };
                     GenreMovie gm10 = new() { GenreId = 4, MovieId = 4 };
 
-                    context.AddRange(gm1, gm2, gm3, gm4, gm5, gm6, gm7, gm8);
+                    GenreMovie gm11 = new() { GenreId = 1, MovieId = 5 };
+                    GenreMovie gm12 = new() { GenreId = 4, MovieId = 5 };
+
+                    context.AddRange(gm1, gm2, gm3, gm4, gm5, gm6, gm7, gm8, gm9, gm10, gm11, gm12);
 
                     context.SaveChanges();
                 }

@@ -7,23 +7,24 @@ namespace Movie_Admin_App.Models
     {
         public int Id { get; set; }
 
+
         [Required(ErrorMessage = "Please enter first name")]
         [StringLength(30)]
         public string? FirstName { get; set; }
+
 
         [Required(ErrorMessage = "Please enter last name")]
         [StringLength(30)]
         public string? LastName { get; set; }
 
+
         [Required(ErrorMessage = "Please enter height")]
         public double Height { get; set; }
+
 
         [Required(ErrorMessage = "Please enter birthday")]
         public DateTime? Birthday { get; set; }
 
-        [Required(ErrorMessage = "Please enter the place of birth")]
-        [StringLength(56)]
-        public string? PlaceOfBirth { get; set; }
 
         [Required(ErrorMessage = "Please enter the biography")]
         [Column("Biography")]

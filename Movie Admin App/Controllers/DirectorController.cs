@@ -17,7 +17,7 @@ namespace Movie_Admin_App.Controllers
 
 
         [HttpGet("")]
-        public async Task<IActionResult> GetDirector([FromQuery] int page=1)
+        public async Task<IActionResult> GetDirector([FromQuery] int page = 1)
         {
             try
             {
@@ -73,7 +73,7 @@ namespace Movie_Admin_App.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving director from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving the director from the database");
             }
         }
 
@@ -95,7 +95,7 @@ namespace Movie_Admin_App.Controllers
                     Birthday = model.Birthday,
                     Height = model.Height,
                     Bio = model.Bio,
-                    PlaceOfBirth = model.PlaceOfBirth,
+                    CountryId = model.CountryId
                 };
 
                 await context.Directors.AddAsync(new_director);
@@ -106,7 +106,7 @@ namespace Movie_Admin_App.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating an director in database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating a director in database");
             }
         }
 
@@ -133,7 +133,7 @@ namespace Movie_Admin_App.Controllers
                 director.Birthday = model.Birthday;
                 director.Height = model.Height;
                 director.Bio = model.Bio;
-                director.PlaceOfBirth = model.PlaceOfBirth;
+                director.CountryId = model.CountryId;
 
                 await context.SaveChangesAsync();
 
@@ -141,7 +141,7 @@ namespace Movie_Admin_App.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating an director in database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating the director in database");
             }
         }
 
@@ -166,7 +166,7 @@ namespace Movie_Admin_App.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting the actor from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting the director from the database");
             }
         }
 

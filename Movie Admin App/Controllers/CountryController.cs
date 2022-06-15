@@ -10,7 +10,7 @@ namespace Movie_Admin_App.Controllers
     {
         private readonly ApplicationContext context;
 
-        public CountryController(ApplicationContext context) 
+        public CountryController(ApplicationContext context)
         {
             this.context = context;
         }
@@ -34,7 +34,7 @@ namespace Movie_Admin_App.Controllers
 
                 return Ok(country);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error getting the Country from the database");
             }
@@ -42,15 +42,15 @@ namespace Movie_Admin_App.Controllers
 
 
         [HttpGet("search")]
-        public async Task<IActionResult> GetCountry([FromQuery]string v)
+        public async Task<IActionResult> GetCountry([FromQuery] string v)
         {
             try
             {
                 var countries = await context.Countries.Where(c => c.Name.Contains(v)).ToListAsync();
 
                 return Ok(countries);
-            } 
-            catch(Exception)
+            }
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error getting the countries from the database");
             }
@@ -67,7 +67,7 @@ namespace Movie_Admin_App.Controllers
                     return BadRequest(model);
                 }
 
-                Country new_country = new() 
+                Country new_country = new()
                 {
                     Name = model.Name,
                 };
@@ -115,7 +115,7 @@ namespace Movie_Admin_App.Controllers
         }
 
 
-        [HttpDelete("")] 
+        [HttpDelete("")]
         public async Task<IActionResult> DeleteCountry([FromQuery] int id)
         {
             try

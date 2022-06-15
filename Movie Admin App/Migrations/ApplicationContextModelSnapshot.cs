@@ -48,7 +48,8 @@ namespace Movie_Admin_App.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<double>("Height")
+                    b.Property<double?>("Height")
+                        .IsRequired()
                         .HasColumnType("float");
 
                     b.Property<string>("Image")
@@ -61,11 +62,6 @@ namespace Movie_Admin_App.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("PlaceOfBirth")
-                        .IsRequired()
-                        .HasMaxLength(56)
-                        .HasColumnType("nvarchar(56)");
 
                     b.HasKey("Id");
 
@@ -155,11 +151,6 @@ namespace Movie_Admin_App.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<string>("PlaceOfBirth")
-                        .IsRequired()
-                        .HasMaxLength(56)
-                        .HasColumnType("nvarchar(56)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CountryId");
@@ -230,7 +221,7 @@ namespace Movie_Admin_App.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("VideoFile")
+                    b.Property<string>("VideoFileName")
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
@@ -241,7 +232,8 @@ namespace Movie_Admin_App.Migrations
                     b.Property<int>("Voters")
                         .HasColumnType("int");
 
-                    b.Property<int>("Year")
+                    b.Property<int?>("Year")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
