@@ -29,24 +29,24 @@ namespace Movie_Admin_App.Controllers
         {
             try
             {
-                var movies = await context.Movies
-                    .Skip(page == 1 ? 0 : page * 16 - 16)
-                    .Take(16)
-                    .Select(m => new
-                    {
-                        //m.Id,
-                        //m.Title,
-                        //ActorList = m.Actors.Select(a => new
-                        //{
-                        //    a.Id,
-                        //    a.FirstName,
-                        //}),
-                        m.Genres,
-                        m.Countries
-                    })
-                    .ToListAsync();
+                //var movies = await context.Movies
+                //    .Skip(page == 1 ? 0 : page * 16 - 16)
+                //    .Take(16)
+                //    .Select(m => new
+                //    {
+                //        //m.Id,
+                //        //m.Title,
+                //        //ActorList = m.Actors.Select(a => new
+                //        //{
+                //        //    a.Id,
+                //        //    a.FirstName,
+                //        //}),
+                //        m.Genres,
+                //        m.Countries
+                //    })
+                //    .ToListAsync();
 
-                return Ok(movies);
+                return Ok();
             }
             catch (Exception)
             {
@@ -66,12 +66,12 @@ namespace Movie_Admin_App.Controllers
                 double[] ratBounds = model.rat.Split('-').Select(double.Parse).ToArray();
                 string[] countList = model.count.Split(',').ToArray();
 
-                var movies = await context.Movies.Select(m => new
-                {
-                    m.Id,
-                    m.Title,
-                    m.Genres
-                }).ToListAsync();
+                //var movies = await context.Movies.Select(m => new
+                //{
+                //    m.Id,
+                //    m.Title,
+                //    m.Genres
+                //}).ToListAsync();
 
                 //Console.WriteLine(durBounds[0] + " " + durBounds[1]);
                 //Console.WriteLine(popBounds[0] + " " + durBounds[1]);
@@ -94,7 +94,7 @@ namespace Movie_Admin_App.Controllers
                 //                    })
                 //                    .ToListAsync();
 
-                return Ok(movies);
+                return Ok();
             }
             catch (Exception)
             {

@@ -10,7 +10,6 @@ namespace Movie_Admin_App.Models
         [StringLength(40)]
         public string? Name { get; set; }
 
-        public List<Movie>? Movies { get; set; }
         public List<GenreMovie>? GenreMovies { get; set; }
     }
 }

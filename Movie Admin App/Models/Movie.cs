@@ -48,16 +48,10 @@ namespace Movie_Admin_App.Models
         public int? DirectorId { get; set; }
         public Director? Director { get; set; }
 
-
-        public List<Actor>? Actors { get; set; }
         public List<ActorMovie>? ActorMovies { get; set; }
 
-
-        public List<Country>? Countries { get; set; }
         public List<CountryMovie>? CountryMovies { get; set; }
 
-
-        public List<Genre>? Genres { get; set; }
         public List<GenreMovie>? GenreMovies { get; set; }
     }
 }

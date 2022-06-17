@@ -72,17 +72,17 @@ namespace Movie_Admin_App.Migrations
 
             modelBuilder.Entity("Movie_Admin_App.Models.ActorMovie", b =>
                 {
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ActorId")
                         .HasColumnType("int");
 
-                    b.HasKey("MovieId", "ActorId");
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ActorId");
+                    b.HasKey("ActorId", "MovieId");
 
-                    b.ToTable("ActorMovie", (string)null);
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("ActorMovies");
                 });
 
             modelBuilder.Entity("Movie_Admin_App.Models.Country", b =>
@@ -103,15 +103,17 @@ namespace Movie_Admin_App.Migrations
 
             modelBuilder.Entity("Movie_Admin_App.Models.CountryMovie", b =>
                 {
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
 
-                    b.HasKey("MovieId", "CountryId");
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
 
-                    b.ToTable("CountryMovie", (string)null);
+                    b.HasKey("CountryId", "MovieId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("CountryMovies");
                 });
 
             modelBuilder.Entity("Movie_Admin_App.Models.Director", b =>
@@ -144,7 +146,10 @@ namespace Movie_Admin_App.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)")
+                        .HasColumnName("ImageFileName");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -178,15 +183,17 @@ namespace Movie_Admin_App.Migrations
 
             modelBuilder.Entity("Movie_Admin_App.Models.GenreMovie", b =>
                 {
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
-                    b.HasKey("MovieId", "GenreId");
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
 
-                    b.ToTable("GenreMovie", (string)null);
+                    b.HasKey("GenreId", "MovieId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("GenreMovies");
                 });
 
             modelBuilder.Entity("Movie_Admin_App.Models.Movie", b =>
@@ -275,7 +282,7 @@ namespace Movie_Admin_App.Migrations
                 {
                     b.HasOne("Movie_Admin_App.Models.Country", "Country")
                         .WithMany("CountryMovies")
-                        .HasForeignKey("MovieId")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -303,7 +310,7 @@ namespace Movie_Admin_App.Migrations
                 {
                     b.HasOne("Movie_Admin_App.Models.Genre", "Genre")
                         .WithMany("GenreMovies")
-                        .HasForeignKey("MovieId")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

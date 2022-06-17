@@ -37,12 +37,9 @@ namespace Movie_Admin_App.Models
         [StringLength(15)]
         public string? Image { get; set; }
 
-
         public int? CountryId { get; set; }
         public Country? Country { get; set; }
 
-
-        public List<Movie>? Movies { get; set; }
         public List<ActorMovie>? ActorMovies { get; set; }
     }
 }

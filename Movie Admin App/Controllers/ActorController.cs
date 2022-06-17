@@ -27,16 +27,18 @@ namespace Movie_Admin_App.Controllers
             try
             {
                 var actors = await context.Actors
-                    .Skip(page == 1 ? 0 : page * 16 - 16)
-                    .Take(16)
-                    .Select(e => new
-                    {
-                        e.Id,
-                        e.FirstName,
-                        e.LastName,
-                        e.Movies
-                    })
-                    .ToListAsync();
+                                .Include(a => a.ActorMovies)
+                                    .ThenInclude(b => b.Movie)
+                            //.Skip(page == 1 ? 0 : page * 16 - 16)
+                            //.Take(16)
+                            .Select(e => new
+                            {
+                                e.Id,
+                                e.FirstName,
+                                e.LastName,
+                                Movies = e.ActorMovies
+                            })
+                            .ToListAsync();
 
                 return Ok(actors);
             }

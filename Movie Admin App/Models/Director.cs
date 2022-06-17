@@ -31,11 +31,15 @@ namespace Movie_Admin_App.Models
         [StringLength(1000)]
         public string? Bio { get; set; }
 
-        public string? Image { get; set; }
 
-        public List<Movie>? Movies { get; set; }
+        [Required(ErrorMessage = "Please enter the image file name")]
+        [Column("ImageFileName")]
+        [StringLength(15)]
+        public string? Image { get; set; }
 
         public int? CountryId { get; set; }
         public Country? Country { get; set; }
+
+        public List<Movie>? Movies { get; set; }
     }
 }

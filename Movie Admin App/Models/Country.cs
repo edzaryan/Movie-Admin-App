@@ -8,8 +8,6 @@
         public List<Actor>? Actors { get; set; }
         public List<Director>? Directors { get; set; }
 
-        public List<Movie>? Movies { get; set; }
         public List<CountryMovie>? CountryMovies { get; set; }
-
     }
 }

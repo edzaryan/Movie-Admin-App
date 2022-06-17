@@ -23,7 +23,7 @@ namespace Movie_Admin_App.Data
                     Country c6 = new() { Name = "ge" };
                     Country c7 = new() { Name = "me" };
 
-                    context.Countries.AddRange(c1, c2, c3, c4, c5, c6, c7);
+                    context.AddRange(c1, c2, c3, c4, c5, c6, c7);
 
                     context.SaveChanges();
                 }
@@ -42,7 +42,7 @@ namespace Movie_Admin_App.Data
                     Genre g10 = new() { Name = "Mystery" };
                     Genre g11 = new() { Name = "Fantasy" };
 
-                    context.Genres.AddRange(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11);
+                    context.AddRange(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11);
 
                     context.SaveChanges();
                 }
@@ -193,7 +193,7 @@ namespace Movie_Admin_App.Data
                         CountryId = 1
                     };
 
-                    context.Actors.AddRange(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
+                    context.AddRange(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 
                     context.SaveChanges();
                 }
@@ -256,7 +256,7 @@ namespace Movie_Admin_App.Data
                         Bio = "David Fincher is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                     };
 
-                    context.Directors.AddRange(d1, d2, d3, d4, d5);
+                    context.AddRange(d1, d2, d3, d4, d5);
 
                     context.SaveChanges();
                 }
@@ -334,11 +334,12 @@ namespace Movie_Admin_App.Data
                         DirectorId = 5,
                     };
 
-                    context.Movies.AddRange(m1, m2, m3, m4, m5);
+                    context.AddRange(m1, m2, m3, m4, m5);
 
                     context.SaveChanges();
                 }
 
+                
                 if (!context.ActorMovies.Any())
                 {
                     ActorMovie am1 = new() { ActorId = 1, MovieId = 1 };
@@ -389,15 +390,15 @@ namespace Movie_Admin_App.Data
                     GenreMovie gm1 = new() { GenreId = 1, MovieId = 1 };
                     GenreMovie gm2 = new() { GenreId = 3, MovieId = 1 };
 
-                    GenreMovie gm3 = new() { GenreId = 6, MovieId = 2 };
-                    GenreMovie gm4 = new() { GenreId = 11, MovieId = 2 };
+                    GenreMovie gm3 = new() { GenreId = 4, MovieId = 1 };
+                    GenreMovie gm4 = new() { GenreId = 6, MovieId = 1 };
 
-                    GenreMovie gm5 = new() { GenreId = 11, MovieId = 3 };
+                    GenreMovie gm5 = new() { GenreId = 10, MovieId = 3 };
                     GenreMovie gm6 = new() { GenreId = 4, MovieId = 3 };
                     GenreMovie gm7 = new() { GenreId = 7, MovieId = 3 };
 
                     GenreMovie gm8 = new() { GenreId = 7, MovieId = 4 };
-                    GenreMovie gm9 = new() { GenreId = 1, MovieId = 4 };
+                    GenreMovie gm9 = new() { GenreId = 2, MovieId = 4 };
                     GenreMovie gm10 = new() { GenreId = 4, MovieId = 4 };
 
                     GenreMovie gm11 = new() { GenreId = 1, MovieId = 5 };

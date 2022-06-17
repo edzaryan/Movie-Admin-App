@@ -21,18 +21,18 @@ namespace Movie_Admin_App.Controllers
         {
             try
             {
-                var genres = await context.Genres
-                    .Skip(page == 1 ? 0 : page * 16 - 16)
-                    .Take(16)
-                    .Select(e => new
-                    {
-                        e.Id,
-                        e.Name,
-                        e.Movies
-                    })
-                    .ToListAsync();
+                //var genres = await context.Genres
+                //    .Skip(page == 1 ? 0 : page * 16 - 16)
+                //    .Take(16)
+                //    .Select(e => new
+                //    {
+                //        e.Id,
+                //        e.Name,
+                //        e.Movies
+                //    })
+                //    .ToListAsync();
 
-                return Ok(genres);
+                return Ok();
             }
             catch(Exception)
             {
