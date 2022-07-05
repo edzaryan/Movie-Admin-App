@@ -1,17 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Movie_Admin_App.Models;
+using Movie_Admin_App.Models.MovieModels;
+using Movie_Admin_App.Models.PersonModels;
 
 namespace Movie_Admin_App.Data
 {
     public class ApplicationContext : DbContext
     {
         public DbSet<Actor> Actors { get; set; }
+
         public DbSet<Director> Directors { get; set; }
+
         public DbSet<Movie> Movies { get; set; }
+
         public DbSet<ActorMovie> ActorMovies { get; set; }
+
         public DbSet<Country> Countries { get; set; }
+
         public DbSet<CountryMovie> CountryMovies { get; set; }
+
         public DbSet<Genre> Genres { get; set; }
+
         public DbSet<GenreMovie> GenreMovies { get; set; }
 
 

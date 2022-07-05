@@ -1,4 +1,6 @@
 ﻿using Movie_Admin_App.Models;
+using Movie_Admin_App.Models.MovieModels;
+using Movie_Admin_App.Models.PersonModels;
 
 namespace Movie_Admin_App.Data
 {
@@ -267,70 +269,70 @@ namespace Movie_Admin_App.Data
                     Movie m1 = new()
                     {
                         Title = "Birdman",
-                        Description = "Birdman or (The Unexpected Virtue of Ignorance) is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        Desc = "Birdman or (The Unexpected Virtue of Ignorance) is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         Year = 2014,
                         Views = 23561,
                         Voters = 300,
                         Stars = 2700,
                         Duration = 120,
                         Image = "r435t34984.jpg",
-                        VideoFileName = "t349848111.mp4",
+                        Video = "t349848111.mp4",
                         DirectorId = 1,
                     };
 
                     Movie m2 = new()
                     {
                         Title = "Avatar",
-                        Description = "Avatar is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        Desc = "Avatar is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         Year = 2009,
                         Views = 27561,
                         Voters = 320,
                         Stars = 2814,
                         Duration = 160,
                         Image = "t3g98483jr.jpg",
-                        VideoFileName = "t349148991.mp4",
+                        Video = "t349148991.mp4",
                         DirectorId = 3,
                     };
 
                     Movie m3 = new()
                     {
                         Title = "The Dark Knight",
-                        Description = "The Dark Knight is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        Desc = "The Dark Knight is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         Year = 2008,
                         Views = 18751,
                         Voters = 270,
                         Stars = 2450,
                         Duration = 152,
                         Image = "t8g96483gg.jpg",
-                        VideoFileName = "t349148a91.mp4",
+                        Video = "t349148a91.mp4",
                         DirectorId = 2,
                     };
 
                     Movie m4 = new()
                     {
                         Title = "Joker",
-                        Description = "Joker is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        Desc = "Joker is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         Year = 2019,
                         Views = 40512,
                         Voters = 781,
                         Stars = 6541,
                         Duration = 122,
                         Image = "48g06483rr.jpg",
-                        VideoFileName = "t559148991.mp4",
+                        Video = "t559148991.mp4",
                         DirectorId = 4,
                     };
 
                     Movie m5 = new()
                     {
                         Title = "Fight Club",
-                        Description = "Fight Club is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        Desc = "Fight Club is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                         Year = 1999,
                         Views = 35612,
                         Voters = 845,
                         Stars = 7812,
                         Duration = 139,
                         Image = "wertyuhgfv.jfif",
-                        VideoFileName = "34redftgyu.mp4",
+                        Video = "34redftgyu.mp4",
                         DirectorId = 5,
                     };
 
@@ -338,7 +340,6 @@ namespace Movie_Admin_App.Data
 
                     context.SaveChanges();
                 }
-
                 
                 if (!context.ActorMovies.Any())
                 {

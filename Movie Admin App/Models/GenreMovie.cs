@@ -1,4 +1,6 @@
-﻿namespace Movie_Admin_App.Models
+﻿using Movie_Admin_App.Models.MovieModels;
+
+namespace Movie_Admin_App.Models
 {
     public class GenreMovie
     {

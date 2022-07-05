@@ -16,43 +16,18 @@ namespace Movie_Admin_App.Controllers
         }
 
 
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetCountryById([FromRoute] int id)
-        {
-            try
-            {
-                var country = await context.Countries.Select(c => new
-                {
-                    c.Id,
-                    c.Name,
-                }).FirstOrDefaultAsync(c => c.Id == id);
-
-                if (country == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(country);
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting the Country from the database");
-            }
-        }
-
-
         [HttpGet("search")]
         public async Task<IActionResult> GetCountry([FromQuery] string v)
         {
             try
             {
-                var countries = await context.Countries.Where(c => c.Name.Contains(v)).ToListAsync();
+                var countries = await context.Countries.OrderBy(c => c.Name).Where(c => c.Name.Contains(v)).ToListAsync();
 
                 return Ok(countries);
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error getting the countries from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while retrieving genres from database");
             }
         }
 
@@ -80,37 +55,37 @@ namespace Movie_Admin_App.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating a country in database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while creating country");
             }
         }
 
 
-        [HttpPut("")]
-        public async Task<IActionResult> UpdateCountry([FromQuery] int id, [FromForm] Country model)
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateCountry([FromRoute] int id, [FromForm] Country model)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(model);
+                    return BadRequest(ModelState);
                 }
 
                 var country = await context.Countries.FirstOrDefaultAsync(c => c.Id == id);
 
                 if (country == null)
                 {
-                    return NotFound();
+                    return NotFound("There isn't a country with id: " + id);
                 }
 
                 country.Name = model.Name;
 
                 await context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(GetCountryById), new { id = country.Id });
+                return Ok();
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating the country in database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while updating the country");
             }
         }
 
@@ -133,7 +108,7 @@ namespace Movie_Admin_App.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting the country in database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while deleting the country");
             }
         }
 

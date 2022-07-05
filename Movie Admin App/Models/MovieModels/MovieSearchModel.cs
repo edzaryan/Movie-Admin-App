@@ -1,4 +1,4 @@
-﻿namespace Movie_Admin_App.CustomModels
+﻿namespace Movie_Admin_App.Models.MovieModels
 {
     public class MovieSearchModel
     {

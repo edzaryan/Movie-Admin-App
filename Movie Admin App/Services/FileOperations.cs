@@ -1,10 +1,9 @@
-﻿using Movie_Admin_App.Custom_Functionalities;
-using Movie_Admin_App.Data.enums;
+﻿using Movie_Admin_App.Data.enums;
 using WMPLib;
 
-namespace Movie_Admin_App.Custom
+namespace Movie_Admin_App.Services
 {
-    public class FileOperations : IFileOperations
+    public class FileOperations
     {
         private readonly IWebHostEnvironment webHostEnvironment;
 
@@ -14,25 +13,28 @@ namespace Movie_Admin_App.Custom
         }
 
 
-        public string UploadFile(IFormFile file, FileCategory category)
+        public void UploadFile(IFormFile? file, string? name, FileCategory category)
         {
-            string fileName = CustomFunctions.UniqueStringGenerator(10) + Path.GetExtension(file.FileName);
+            if (file == null)
+            {
+                throw new Exception("The file is not found");
+            }
 
             string uploadsFolder = $"{webHostEnvironment.WebRootPath}\\{category.ToString()}\\";
 
-            string filePath = Path.Combine(uploadsFolder, fileName);
+            string filePath = Path.Combine(uploadsFolder, name);
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
                 file.CopyTo(fileStream);
             }
-
-            return fileName;
         }
 
 
-        public void DeleteFile(string fileName, FileCategory category)
+        public void DeleteFile(string? fileName, FileCategory category)
         {
+            if (fileName == null) return;
+
             string filePath = $"{webHostEnvironment.WebRootPath}\\{category.ToString()}\\{fileName}";
 
             if (File.Exists(filePath))

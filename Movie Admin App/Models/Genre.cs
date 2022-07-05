@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Movie_Admin_App.Controllers;
+using System.ComponentModel.DataAnnotations;
 
 namespace Movie_Admin_App.Models
 {
@@ -10,6 +11,6 @@ namespace Movie_Admin_App.Models
         [StringLength(40)]
         public string? Name { get; set; }
 
-        public List<GenreMovie>? GenreMovies { get; set; }
+        public List<GenreMovie>? GenreMovies { get; set; } = new();
     }
 }

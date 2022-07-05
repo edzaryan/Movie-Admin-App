@@ -17,7 +17,7 @@ namespace Movie_Admin_App.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -26,42 +26,45 @@ namespace Movie_Admin_App.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Bio")
-                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)")
-                        .HasColumnName("Biography");
+                        .HasColumnName("Biography")
+                        .HasColumnOrder(5);
 
                     b.Property<DateTime?>("Birthday")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(3);
 
                     b.Property<int?>("CountryId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(6);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnOrder(1);
 
                     b.Property<double?>("Height")
-                        .IsRequired()
-                        .HasColumnType("float");
+                        .HasColumnType("float")
+                        .HasColumnOrder(4);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)")
-                        .HasColumnName("ImageFileName");
+                        .HasColumnOrder(7);
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnOrder(2);
 
                     b.HasKey("Id");
 
@@ -94,7 +97,9 @@ namespace Movie_Admin_App.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -114,53 +119,6 @@ namespace Movie_Admin_App.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("CountryMovies");
-                });
-
-            modelBuilder.Entity("Movie_Admin_App.Models.Director", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Bio")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)")
-                        .HasColumnName("Biography");
-
-                    b.Property<DateTime?>("Birthday")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CountryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<double>("Height")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)")
-                        .HasColumnName("ImageFileName");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("Directors");
                 });
 
             modelBuilder.Entity("Movie_Admin_App.Models.Genre", b =>
@@ -196,58 +154,118 @@ namespace Movie_Admin_App.Migrations
                     b.ToTable("GenreMovies");
                 });
 
-            modelBuilder.Entity("Movie_Admin_App.Models.Movie", b =>
+            modelBuilder.Entity("Movie_Admin_App.Models.MovieModels.Movie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Description")
-                        .IsRequired()
+                    b.Property<string>("Desc")
                         .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(1000)")
+                        .HasColumnName("Description")
+                        .HasColumnOrder(3);
 
                     b.Property<int?>("DirectorId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(4);
 
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
+                    b.Property<int?>("Duration")
+                        .HasColumnType("int")
+                        .HasColumnOrder(5);
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(15)")
+                        .HasColumnOrder(9);
 
                     b.Property<int>("Stars")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(8);
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnOrder(1);
 
-                    b.Property<string>("VideoFileName")
-                        .IsRequired()
+                    b.Property<string>("Video")
                         .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(15)")
+                        .HasColumnName("VideoFileName")
+                        .HasColumnOrder(10);
 
                     b.Property<int>("Views")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(6);
 
                     b.Property<int>("Voters")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(7);
 
                     b.Property<int?>("Year")
-                        .IsRequired()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
 
                     b.HasKey("Id");
 
                     b.HasIndex("DirectorId");
 
                     b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("Movie_Admin_App.Models.PersonModels.Director", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Bio")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
+                        .HasColumnName("Biography")
+                        .HasColumnOrder(5);
+
+                    b.Property<DateTime?>("Birthday")
+                        .HasColumnType("datetime2")
+                        .HasColumnOrder(3);
+
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int")
+                        .HasColumnOrder(6);
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnOrder(1);
+
+                    b.Property<double?>("Height")
+                        .HasColumnType("float")
+                        .HasColumnOrder(4);
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)")
+                        .HasColumnOrder(7);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Directors");
                 });
 
             modelBuilder.Entity("Movie_Admin_App.Models.Actor", b =>
@@ -267,7 +285,7 @@ namespace Movie_Admin_App.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Movie_Admin_App.Models.Movie", "Movie")
+                    b.HasOne("Movie_Admin_App.Models.MovieModels.Movie", "Movie")
                         .WithMany("ActorMovies")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -286,7 +304,7 @@ namespace Movie_Admin_App.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Movie_Admin_App.Models.Movie", "Movie")
+                    b.HasOne("Movie_Admin_App.Models.MovieModels.Movie", "Movie")
                         .WithMany("CountryMovies")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -297,15 +315,6 @@ namespace Movie_Admin_App.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("Movie_Admin_App.Models.Director", b =>
-                {
-                    b.HasOne("Movie_Admin_App.Models.Country", "Country")
-                        .WithMany("Directors")
-                        .HasForeignKey("CountryId");
-
-                    b.Navigation("Country");
-                });
-
             modelBuilder.Entity("Movie_Admin_App.Models.GenreMovie", b =>
                 {
                     b.HasOne("Movie_Admin_App.Models.Genre", "Genre")
@@ -314,7 +323,7 @@ namespace Movie_Admin_App.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Movie_Admin_App.Models.Movie", "Movie")
+                    b.HasOne("Movie_Admin_App.Models.MovieModels.Movie", "Movie")
                         .WithMany("GenreMovies")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -325,13 +334,22 @@ namespace Movie_Admin_App.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("Movie_Admin_App.Models.Movie", b =>
+            modelBuilder.Entity("Movie_Admin_App.Models.MovieModels.Movie", b =>
                 {
-                    b.HasOne("Movie_Admin_App.Models.Director", "Director")
+                    b.HasOne("Movie_Admin_App.Models.PersonModels.Director", "Director")
                         .WithMany("Movies")
                         .HasForeignKey("DirectorId");
 
                     b.Navigation("Director");
+                });
+
+            modelBuilder.Entity("Movie_Admin_App.Models.PersonModels.Director", b =>
+                {
+                    b.HasOne("Movie_Admin_App.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId");
+
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("Movie_Admin_App.Models.Actor", b =>
@@ -344,13 +362,6 @@ namespace Movie_Admin_App.Migrations
                     b.Navigation("Actors");
 
                     b.Navigation("CountryMovies");
-
-                    b.Navigation("Directors");
-                });
-
-            modelBuilder.Entity("Movie_Admin_App.Models.Director", b =>
-                {
-                    b.Navigation("Movies");
                 });
 
             modelBuilder.Entity("Movie_Admin_App.Models.Genre", b =>
@@ -358,13 +369,18 @@ namespace Movie_Admin_App.Migrations
                     b.Navigation("GenreMovies");
                 });
 
-            modelBuilder.Entity("Movie_Admin_App.Models.Movie", b =>
+            modelBuilder.Entity("Movie_Admin_App.Models.MovieModels.Movie", b =>
                 {
                     b.Navigation("ActorMovies");
 
                     b.Navigation("CountryMovies");
 
                     b.Navigation("GenreMovies");
+                });
+
+            modelBuilder.Entity("Movie_Admin_App.Models.PersonModels.Director", b =>
+                {
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }

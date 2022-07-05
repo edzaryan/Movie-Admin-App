@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Movie_Admin_App.Custom;
-using Movie_Admin_App.Custom_Functionalities;
-using Movie_Admin_App.CustomModels;
 using Movie_Admin_App.Data;
 using Movie_Admin_App.Data.enums;
 using Movie_Admin_App.Models;
-using Movie_Admin_App.ViewModels;
-using MovieWebAppAdmin.ViewModels;
+using Movie_Admin_App.Models.MovieModels;
+using Movie_Admin_App.Services;
 
 namespace Movie_Admin_App.Controllers
 {
@@ -15,9 +14,9 @@ namespace Movie_Admin_App.Controllers
     public class MovieController : ControllerBase
     {
         private readonly ApplicationContext context;
-        private readonly IFileOperations fileOperations;
+        private readonly FileOperations fileOperations;
 
-        public MovieController(ApplicationContext context, IFileOperations fileOperations)
+        public MovieController(ApplicationContext context, FileOperations fileOperations)
         {
             this.context = context;
             this.fileOperations = fileOperations;
@@ -29,24 +28,20 @@ namespace Movie_Admin_App.Controllers
         {
             try
             {
-                //var movies = await context.Movies
-                //    .Skip(page == 1 ? 0 : page * 16 - 16)
-                //    .Take(16)
-                //    .Select(m => new
-                //    {
-                //        //m.Id,
-                //        //m.Title,
-                //        //ActorList = m.Actors.Select(a => new
-                //        //{
-                //        //    a.Id,
-                //        //    a.FirstName,
-                //        //}),
-                //        m.Genres,
-                //        m.Countries
-                //    })
-                //    .ToListAsync();
+                var movies = await context.Movies
+                    .Skip(page * 16 - 16)
+                    .Take(16)
+                    .Select(m => new
+                    {
+                        m.Id,
+                        m.Title,
+                        m.Image,
+                        Rating = (double)m.Stars / m.Voters,
+                        m.Year,
+                    })
+                    .ToListAsync();
 
-                return Ok();
+                return Ok(movies);
             }
             catch (Exception)
             {
@@ -60,41 +55,30 @@ namespace Movie_Admin_App.Controllers
         {
             try
             {
-                int[] durBounds = model.dur.Split('-').Select(int.Parse).ToArray();
-                int[] popBounds = model.pop.Split('-').Select(int.Parse).ToArray();
+                int[] durationBounds = model.dur.Split('-').Select(int.Parse).ToArray();
                 int[] yearBounds = model.year.Split('-').Select(int.Parse).ToArray();
-                double[] ratBounds = model.rat.Split('-').Select(double.Parse).ToArray();
-                string[] countList = model.count.Split(',').ToArray();
+                double[] ratingBounds = model.rat.Split('-').Select(double.Parse).ToArray();
+                string[] countryList = model.count.Split(',').ToArray();
 
-                //var movies = await context.Movies.Select(m => new
-                //{
-                //    m.Id,
-                //    m.Title,
-                //    m.Genres
-                //}).ToListAsync();
+                int[] popularityBounds = model.pop.Split('-').Select(int.Parse).ToArray();
 
-                //Console.WriteLine(durBounds[0] + " " + durBounds[1]);
-                //Console.WriteLine(popBounds[0] + " " + durBounds[1]);
-                //Console.WriteLine(yearBounds[0] + " " + yearBounds[1]);
-                //Console.WriteLine(ratBounds[0] + " " + ratBounds[1]);
-                //Console.WriteLine(countList[0] + " " + countList[1]);
+                var movies = await context.Movies
+                    .Where(m =>
+                        m.Title.Contains(model.v) &&
+                        m.Year >= yearBounds[0] && m.Year <= yearBounds[1] &&
+                        m.Duration >= durationBounds[0] && m.Duration <= durationBounds[1] &&
+                        (double) m.Stars / m.Voters >= ratingBounds[0] && (double) m.Stars / m.Voters <= ratingBounds[1] && 
+                        m.CountryMovies.All(cm => countryList.Contains(cm.Country.Name))
+                    ) 
+                    .Select(p => new
+                    {
+                        p.Id,
+                        p.Title,
+                        p.Image,
+                    })
+                    .ToListAsync();
 
-                //var movies = await context.Movies.Where(m =>
-                //                    m.Title.Contains(model.v))
-                //                    //m.Year >= yearBounds[0] && m.Year <= yearBounds[1])
-                //                    //m.Countries.Any(c => countList.Contains(c.Name)))
-                //                    //m.Duration >= ratBounds[0] && m.Duration <= ratBounds[1])
-                //                    .Select(m => new
-                //                    {
-                //                        m.Id,
-                //                        m.Title,
-                //                        m.Countries,
-                //                        m.Genres,
-                //                        m.Actors
-                //                    })
-                //                    .ToListAsync();
-
-                return Ok();
+                return Ok(movies);
             }
             catch (Exception)
             {
@@ -103,12 +87,41 @@ namespace Movie_Admin_App.Controllers
         }
 
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}/edit")]
         public async Task<IActionResult> GetMovieById([FromRoute] int id)
         {
             try
             {
-                var movie = await context.Movies.FirstOrDefaultAsync(m => m.Id == id);
+                var movie = await context.Movies
+                    .Select(m => new
+                    {
+                        m.Id,
+                        m.Title,
+                        m.Duration,
+                        m.Desc,
+                        m.Year,
+                        Rating = (double) m.Stars / m.Voters,
+                        m.Views,
+                        m.Image,
+                        m.Video,
+                        //m.Director,
+                        Genres = m.GenreMovies.Select(gm => new
+                        {
+                            gm.Genre.Id,
+                            gm.Genre.Name
+                        }),
+                        Countries = m.CountryMovies.Select(cm => new
+                        {
+                            cm.Country.Id,
+                            cm.Country.Name
+                        }),
+                        Actors = m.ActorMovies.Select(am => new 
+                        { 
+                            am.Actor.Id, 
+                            am.Actor.FirstName,
+                            am.Actor.LastName,
+                        })
+                    }).FirstOrDefaultAsync(m => m.Id == id);
 
                 if (movie == null)
                 {
@@ -125,86 +138,171 @@ namespace Movie_Admin_App.Controllers
 
 
         [HttpPost("")]
-        public async Task<IActionResult> CreateMovie([FromForm] CreateMovieModel model)
+        public async Task<IActionResult> CreateMovie([FromForm] MovieCreateModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(model);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var new_movie = new Movie
+                {
+                    Title = model.Title,
+                    Year = model.Year,
+                    Desc = model.Desc,
+                };
+
+                if (model.Image != null)
+                {
+                    string? uniqueImageName = CustomFunctions.GetUniqueFileName(10, Path.GetExtension(model.Image.FileName));
+
+                    fileOperations.UploadFile(model.Image, uniqueImageName, FileCategory.Image);
+
+                    new_movie.Image = uniqueImageName;
+                }
+
+                if (model.Video != null)
+                {
+                    string? uniqueVideoName = CustomFunctions.GetUniqueFileName(10, Path.GetExtension(model.Video.FileName));
+
+                    fileOperations.UploadFile(model.Video, uniqueVideoName, FileCategory.Video);
+
+                    new_movie.Video = uniqueVideoName;
+                }
+
+                await context.Movies.AddAsync(new_movie);
+                await context.SaveChangesAsync();
+
+
+                if (model.ActorIds == null)
+                {
+                    int[] ActorIds = model.ActorIds.Split(",").Select(int.Parse).ToArray();
+
+                    foreach (var id in ActorIds)
+                    {
+                        await context.ActorMovies.AddAsync(new ActorMovie { ActorId = new_movie.Id, MovieId = id });
+                    }
+
+                    await context.SaveChangesAsync();
+                }
+
+                return Ok("New movie created successfully");
             }
-
-            string uniquImageFileName = fileOperations.UploadFile(model.UploadedImage, FileCategory.Image);
-
-            string uniqueVideoFileName = fileOperations.UploadFile(model.UploadedVideo, FileCategory.Video);
-
-            int videoFileDuration = fileOperations.GetVideoFileDuration(uniqueVideoFileName);
-
-            var new_movie = new Movie
+            catch (Exception)
             {
-                Title = model.Title,
-                Year = model.Year,
-                Description = model.Description,
-                Duration = videoFileDuration,
-                Image = uniquImageFileName,
-                VideoFileName = uniqueVideoFileName,
-            };
-
-            await context.Movies.AddAsync(new_movie);
-
-            await context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(GetMovies));
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating a movie in database");
+            }
         }
 
 
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateMovie([FromRoute] int id, [FromForm] UpdateMovieViewModel model)
+        [HttpPatch("{id:int}/edit")]
+        public async Task<IActionResult> UpdateMoviePatch([FromRoute] int id, [FromBody] JsonPatchDocument<MoviePatchModel> patchModel)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest();
+                var movie = await context.Movies.FirstOrDefaultAsync(m => m.Id == id);
+
+                if (movie == null)
+                {
+                    return NotFound("Couldn't find a movie with id: " + id);
+                }
+
+                patchModel.ApplyTo(movie, ModelState);
+
+                await context.SaveChangesAsync();
+
+                return Ok("The movie updated successfully");
             }
-
-            var movie = await context.Movies.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (movie == null)
+            catch (Exception)
             {
-                return NotFound("There is not a movie with id: " + id);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while updating the actor");
             }
-
-            if (model.UploadedImage != null)
-            {
-                fileOperations.DeleteFile(movie.Image, FileCategory.Image);
-                movie.Image = fileOperations.UploadFile(model.UploadedImage, FileCategory.Image);
-            }
-
-            if (model.UploadedVideo != null)
-            {
-                fileOperations.DeleteFile(movie.VideoFileName, FileCategory.Video);
-                movie.VideoFileName = fileOperations.UploadFile(model.UploadedVideo, FileCategory.Video);
-
-                movie.Duration = fileOperations.GetVideoFileDuration(movie.VideoFileName);
-            }
-
-            if (model.Title != null)
-            {
-                movie.Title = model.Title;
-            }
-
-            if (model.Year != null)
-            {
-                movie.Year = model.Year;
-            }
-
-            if (model.Description != null)
-            {
-                movie.Description = model.Description;
-            }
-
-            await context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(GetMovieById), new { Id = movie.Id });
         }
-        
+
+
+        [HttpPut("{id:int}/profileImage/edit")]
+        public async Task<IActionResult> UpdateImage([FromRoute] int id, [FromForm] UploadImageModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var movie = await context.Movies.FirstOrDefaultAsync(a => a.Id == id);
+
+                if (movie == null)
+                {
+                    return NotFound("Couldn't find the movie with id: " + id);
+                }
+
+                string? movieImageName = movie.Image;
+
+                if (movieImageName == null)
+                {
+                    movieImageName = CustomFunctions.GetUniqueFileName(10, Path.GetExtension(model.Image.FileName));
+                }
+                else
+                {
+                    fileOperations.DeleteFile(movieImageName, FileCategory.Image);
+                }
+
+                fileOperations.UploadFile(model.Image, movieImageName, FileCategory.Image);
+
+                await context.SaveChangesAsync();
+
+                return Ok(movieImageName);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while updating the image");
+            }
+        }
+
+
+        [HttpPut("{id:int}/video/edit")]
+        public async Task<IActionResult> UpdateVideo([FromRoute] int id, [FromForm] UploadVideoModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var movie = await context.Movies.FirstOrDefaultAsync(a => a.Id == id);
+
+                if (movie == null)
+                {
+                    return NotFound("Couldn't find the movie with id: " + id);
+                }
+
+                string? movieVideoName = movie.Video;
+
+                if (movieVideoName == null)
+                {
+                    movieVideoName = CustomFunctions.GetUniqueFileName(10, Path.GetExtension(model.VideoFile.FileName));
+                }
+                else
+                {
+                    fileOperations.DeleteFile(movieVideoName, FileCategory.Video);
+                }
+
+                fileOperations.UploadFile(model.VideoFile, movieVideoName, FileCategory.Video);
+
+                await context.SaveChangesAsync();
+
+                return Ok(movieVideoName);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while updating the video");
+            }
+        }
+
 
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteMovie([FromRoute] int id)
@@ -219,7 +317,7 @@ namespace Movie_Admin_App.Controllers
                 }
 
                 fileOperations.DeleteFile(movie.Image, FileCategory.Image);
-                fileOperations.DeleteFile(movie.VideoFileName, FileCategory.Video);
+                fileOperations.DeleteFile(movie.Video, FileCategory.Video);
 
                 context.Movies.Remove(movie);
 

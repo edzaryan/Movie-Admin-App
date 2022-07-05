@@ -8,11 +8,11 @@ using Movie_Admin_App.Services;
 namespace Movie_Admin_App.Controllers
 {
     [Route("[controller]")]
-    public class ActorController : ControllerBase
+    public class PersonController : ControllerBase
     {
         private readonly IGenericPersonService<Actor> _repository;
 
-        public ActorController(IGenericPersonService<Actor> repository) => _repository = repository;
+        public PersonController(IGenericPersonService<Actor> repository) => _repository = repository;
 
 
         [HttpGet("")]
@@ -25,7 +25,7 @@ namespace Movie_Admin_App.Controllers
                     a.Id,
                     a.FirstName,
                     a.LastName,
-                });                        
+                });
 
                 return Ok(actors);
             }
@@ -80,7 +80,7 @@ namespace Movie_Admin_App.Controllers
                                         am.Movie.Image
                                     })
                                 }).FirstOrDefault();
-         
+
                 return Ok(actor);
             }
             catch (Exception)
@@ -136,7 +136,7 @@ namespace Movie_Admin_App.Controllers
 
                 return Ok("The actor updated successfully");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while updating the actor");
             }

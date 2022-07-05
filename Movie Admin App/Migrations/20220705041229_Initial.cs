@@ -15,7 +15,7 @@ namespace Movie_Admin_App.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,11 +43,11 @@ namespace Movie_Admin_App.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Height = table.Column<double>(type: "float", nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Biography = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    ImageFileName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    CountryId = table.Column<int>(type: "int", nullable: true)
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Height = table.Column<double>(type: "float", nullable: true),
+                    Biography = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    CountryId = table.Column<int>(type: "int", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,11 +67,11 @@ namespace Movie_Admin_App.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Height = table.Column<double>(type: "float", nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Biography = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    ImageFileName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    CountryId = table.Column<int>(type: "int", nullable: true)
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Height = table.Column<double>(type: "float", nullable: true),
+                    Biography = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    CountryId = table.Column<int>(type: "int", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,15 +90,15 @@ namespace Movie_Admin_App.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Year = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    Duration = table.Column<int>(type: "int", nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    DirectorId = table.Column<int>(type: "int", nullable: true),
+                    Duration = table.Column<int>(type: "int", nullable: true),
                     Views = table.Column<int>(type: "int", nullable: false),
                     Voters = table.Column<int>(type: "int", nullable: false),
                     Stars = table.Column<int>(type: "int", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    VideoFileName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    DirectorId = table.Column<int>(type: "int", nullable: true)
+                    Image = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    VideoFileName = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true)
                 },
                 constraints: table =>
                 {

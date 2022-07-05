@@ -16,84 +16,39 @@ namespace Movie_Admin_App.Controllers
         }
 
 
-        [HttpGet("")]
-        public async Task<IActionResult> GetGenres([FromQuery] int page = 1)
-        {
-            try
-            {
-                //var genres = await context.Genres
-                //    .Skip(page == 1 ? 0 : page * 16 - 16)
-                //    .Take(16)
-                //    .Select(e => new
-                //    {
-                //        e.Id,
-                //        e.Name,
-                //        e.Movies
-                //    })
-                //    .ToListAsync();
-
-                return Ok();
-            }
-            catch(Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving genre from the database");
-            }
-        }
-
-
         [HttpGet("search")]
         public async Task<IActionResult> GetGenre([FromQuery] string v)
         {
             try
             {
-                var genres = await context.Genres.Where(g => g.Name.Contains(v)).ToListAsync();
+                var genres = await context.Genres.OrderBy(g => g.Name).Where(g => g.Name.Contains(v)).ToListAsync();
 
                 return Ok(genres);
             }
             catch(Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving genre from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while retrieving genres");
             }
         }
 
 
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetGenreById([FromRoute] int id)
-        {
-            try
-            {
-                var genre = await context.Genres.FirstOrDefaultAsync(g => g.Id == id);
-
-                if (genre == null)
-                {
-                    return NotFound("There is not a genre with id: " + id);
-                }
-
-                return Ok(genre);
-            } 
-            catch(Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving genre from the database");
-            }
-        }
-
-
+        [HttpPost("")]
         public async Task<IActionResult> CreateGenre([FromForm] Genre model)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest();
+                    return BadRequest(ModelState);
                 }
 
                 await context.Genres.AddAsync(model);
 
-                return RedirectToAction(nameof(GetGenres));
+                return Ok("The genre created successfully");
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error creating a genre from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while creating a new genre");
             }
         }
 
@@ -105,7 +60,7 @@ namespace Movie_Admin_App.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest();
+                    return BadRequest(ModelState);
                 }
 
                 var genre = await context.Genres.FirstOrDefaultAsync(g => g.Id == id);
@@ -119,11 +74,11 @@ namespace Movie_Admin_App.Controllers
 
                 await context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(GetGenres));
+                return Ok(genre);
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating the genre in the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while updating the genre");
             }
         }
 
@@ -142,11 +97,11 @@ namespace Movie_Admin_App.Controllers
 
                 context.Genres.Remove(genre);
 
-                return RedirectToAction(nameof(GetGenres));
+                return Ok("The genre deleted successfully");
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting the genre in the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal Server Error occured while deleting the genre");
             }
         }
 
